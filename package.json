@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git+https://github.com/jacobbuck/primary-click.git"
   },
-  "keywords": ["dom", "event", "mouse", "click"],
+  "keywords": ["click", "dom", "event", "mouse"],
   "author": "Jacob Buck <buck.jacob@gmail.com>",
   "license": "MIT",
   "bugs": {
