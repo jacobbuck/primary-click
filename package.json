@@ -1,0 +1,17 @@
+{
+  "name": "primary-click",
+  "version": "0.0.1",
+  "description": "Detects if only the primary button has been clicked in mouse events.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacobbuck/primary-click.git"
+  },
+  "keywords": ["dom", "event", "mouse", "click"],
+  "author": "Jacob Buck <buck.jacob@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jacobbuck/primary-click/issues"
+  },
+  "homepage": "https://github.com/jacobbuck/primary-click"
+}
