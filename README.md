@@ -4,7 +4,7 @@ Detects if only the primary button has been clicked.
 
 ## Usage
 
-### `isPrimaryClick(e)`
+### `isPrimaryClick(e {MouseEvent})`
 
 Detects if only the primary button has been pressed in mouse events.
 
