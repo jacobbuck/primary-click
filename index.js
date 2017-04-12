@@ -1,4 +1,4 @@
 module.exports = {
-	isPrimaryClick: require('./lib/isPrimaryClick'),
-	onPrimaryClick: require('./lib/onPrimaryClick')
+	isPrimaryClick: require('./is-primary-click'),
+	onPrimaryClick: require('./on-primary-click')
 };
