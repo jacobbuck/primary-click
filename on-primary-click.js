@@ -1,4 +1,4 @@
-var isPrimaryClick = require('./isPrimaryClick');
+var isPrimaryClick = require('./is-primary-click');
 
 /**
  * Decorates a function so it calls if only the primary button has been
