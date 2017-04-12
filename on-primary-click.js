@@ -1,3 +1,5 @@
+'use strict';
+
 var isPrimaryClick = require('./is-primary-click');
 
 /**
@@ -6,8 +8,8 @@ var isPrimaryClick = require('./is-primary-click');
  * @param {Function} func
  * @return {Function}
  */
-module.exports = function onPrimaryClick (func) {
-	return function (e) {
-		return isPrimaryClick(e) ? func(e) : true;
-	}
+module.exports = function onPrimaryClick(func) {
+  return function(e) {
+    return isPrimaryClick(e) ? func(e) : true;
+  }
 };
