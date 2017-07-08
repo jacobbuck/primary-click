@@ -15,9 +15,9 @@ Returns a boolean, `true` if the primary mouse button has been pressed, and no k
 #### Example
 
 ```js
-import { isPrimaryClick } from 'primary-click';
+import { isPrimaryClick } from "primary-click";
 
-someDomEl.addEventListener('click', e => {
+someDomEl.addEventListener("click", e => {
   if (isPrimaryClick(e)) {
     …
   }
@@ -37,9 +37,9 @@ Returns a new function which expects a `Event`-like instance as the first argume
 Basic:
 
 ```js
-import { onPrimaryClick } from 'primary-click';
+import { onPrimaryClick } from "primary-click";
 
-someEl.addEventListener('click', onPrimaryClick(e => {
+someEl.addEventListener("click", onPrimaryClick(e => {
   …
 }));
 ```
@@ -47,10 +47,10 @@ someEl.addEventListener('click', onPrimaryClick(e => {
 Composed:
 
 ```js
-import { onPrimaryClick } from 'primary-click';
-import preventDefault from 'prevent-default';
+import { onPrimaryClick } from "primary-click";
+import preventDefault from "prevent-default";
 
-someEl.addEventListener('click', onPrimaryClick(preventDefault(e => {
+someEl.addEventListener("click", onPrimaryClick(preventDefault(e => {
   …
 })));
 ```
