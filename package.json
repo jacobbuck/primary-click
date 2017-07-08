@@ -3,6 +3,9 @@
   "version": "1.2.0",
   "description": "Detects if the primary button has been clicked in mouse events.",
   "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "build": "babel --out-dir lib src",
     "test": "echo \"Error: no test specified\" && exit 1",
