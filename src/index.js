@@ -13,4 +13,5 @@ export const isPrimaryClick = e =>
  * @param {Function} fn
  * @return {Function}
  */
-export const onPrimaryClick = fn => e => (isPrimaryClick(e) ? fn(e) : true);
+export const onPrimaryClick = fn => (e, ...args) =>
+  isPrimaryClick(e, ...args) ? fn(e) : true;
