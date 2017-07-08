@@ -1,6 +1,6 @@
 {
   "name": "primary-click",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Detects if the primary button has been clicked in mouse events.",
   "main": "lib/index.js",
   "files": [
