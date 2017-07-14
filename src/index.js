@@ -5,7 +5,8 @@
  */
 export const isPrimaryClick = e =>
   !(e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) &&
-  ("buttons" in e ? e.buttons === 1 : "button" in e && e.button === 0);
+  (!("buttons" in e) || e.buttons === 0 || e.buttons === 1) &&
+  e.button === 0;
 
 /**
  * Decorates a function so it calls if only the primary button has been
