@@ -9,7 +9,7 @@
   "scripts": {
     "build": "babel --out-dir lib src",
     "test": "npm run build && mocha",
-    "prepublish": "npm run build"
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
