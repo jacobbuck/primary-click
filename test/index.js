@@ -10,8 +10,9 @@ describe("isPrimaryClick", function() {
     expect(isPrimaryClick({ shiftKey: true, button: 0 })).toBe(false);
   });
 
-  it("returns true when button is 0", function() {
+  it("returns true when button is 0 and buttons isn't set", function() {
     expect(isPrimaryClick({ button: 0 })).toBe(true);
+    expect(isPrimaryClick({ button: 0, buttons: undefined })).toBe(true);
   });
 
   it("returns true when button is 0 if buttons is set", function() {
