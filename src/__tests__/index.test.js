@@ -60,9 +60,9 @@ describe('onPrimaryClick', () => {
     expect(onPrimaryClick(spy)({ button: 0 })).toBe('hi');
   });
 
-  it("returns `true` if fn doesn't get called", () => {
+  it("returns `undefined` if fn doesn't get called", () => {
     const spy = jest.fn(() => 'hi');
-    expect(onPrimaryClick(spy)({ ctrlKey: true, button: 1 })).toBe(true);
+    expect(onPrimaryClick(spy)({ ctrlKey: true, button: 1 })).toBeUndefined();
   });
 
   it('passes down arguments to fn', () => {
