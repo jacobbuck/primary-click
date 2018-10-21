@@ -44,28 +44,30 @@ describe('isPrimaryClick', () => {
 
 describe('onPrimaryClick', () => {
   it('calls fn if isPrimaryClick returns true', () => {
-    var spy = jest.fn();
+    const spy = jest.fn();
     onPrimaryClick(spy)({ button: 0 });
     expect(spy).toHaveBeenCalled();
   });
 
   it("doesn't call fn if isPrimaryClick returns false", () => {
-    var spy = jest.fn();
+    const spy = jest.fn();
     onPrimaryClick(spy)({ ctrlKey: true, button: 1 });
     expect(spy).not.toHaveBeenCalled();
   });
 
   it('returns the value fn returns if called', () => {
-    expect(onPrimaryClick(() => 'hi')({ button: 0 })).toBe('hi');
+    const spy = jest.fn(() => 'hi');
+    expect(onPrimaryClick(spy)({ button: 0 })).toBe('hi');
   });
 
   it("returns `true` if fn doesn't get called", () => {
-    expect(onPrimaryClick(() => 'hi')({ ctrlKey: true, button: 1 })).toBe(true);
+    const spy = jest.fn(() => 'hi');
+    expect(onPrimaryClick(spy)({ ctrlKey: true, button: 1 })).toBe(true);
   });
 
   it('passes down arguments to fn', () => {
-    var spy = jest.fn();
-    var mockEvent = { button: 0 };
+    const spy = jest.fn();
+    const mockEvent = { button: 0 };
     onPrimaryClick(spy)(mockEvent, 'goodbye', 420);
     expect(spy).toHaveBeenCalledWith(mockEvent, 'goodbye', 420);
   });
