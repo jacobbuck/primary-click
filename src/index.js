@@ -15,4 +15,4 @@ export const isPrimaryClick = e =>
  * @return {Function}
  */
 export const onPrimaryClick = fn => (e, ...args) =>
-  isPrimaryClick(e) ? fn(e, ...args) : true;
+  isPrimaryClick(e) ? fn(e, ...args) : undefined;
