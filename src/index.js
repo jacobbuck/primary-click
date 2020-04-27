@@ -3,7 +3,7 @@
  * @param {MouseEvent} e Event instance (or Event-like, i.e. `SyntheticEvent`)
  * @return {Boolean}
  */
-export const isPrimaryClick = e =>
+export const isPrimaryClick = (e) =>
   !(e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) &&
   (e.buttons == null || e.buttons === 0 || e.buttons === 1) &&
   (e.button != null ? e.button === 0 : e.which === 1);
@@ -14,5 +14,5 @@ export const isPrimaryClick = e =>
  * @param {Function} fn
  * @return {Function}
  */
-export const onPrimaryClick = fn => (e, ...args) =>
+export const onPrimaryClick = (fn) => (e, ...args) =>
   isPrimaryClick(e) ? fn(e, ...args) : undefined;
