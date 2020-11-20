@@ -1,18 +1,21 @@
 /**
  * Detects if only the primary button has been clicked in mouse events.
- * @param {MouseEvent} e Event instance (or Event-like, i.e. `SyntheticEvent`)
+ * @param {MouseEvent} event Event-like instance.
  * @return {Boolean}
  */
-export const isPrimaryClick = (e) =>
-  !(e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) &&
-  (e.buttons == null || e.buttons === 0 || e.buttons === 1) &&
-  (e.button != null ? e.button === 0 : e.which === 1);
+export const isPrimaryClick = (event) =>
+  !event.altKey &&
+  !event.ctrlKey &&
+  !event.metaKey &&
+  !event.shiftKey &&
+  (event.buttons == null || event.buttons === 0 || event.buttons === 1) &&
+  (event.button != null ? event.button === 0 : event.which === 1);
 
 /**
  * Decorates a function so it calls if only the primary button has been
  * pressed in mouse events.
- * @param {Function} fn
+ * @param {Function} func
  * @return {Function}
  */
-export const onPrimaryClick = (fn) => (e, ...args) =>
-  isPrimaryClick(e) ? fn(e, ...args) : undefined;
+export const onPrimaryClick = (func) => (event, ...args) =>
+  isPrimaryClick(event) ? func(event, ...args) : undefined;
