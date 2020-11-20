@@ -1,7 +1,7 @@
 /**
  * Detects if only the primary button has been clicked in mouse events.
  * @param {MouseEvent} event Event-like instance.
- * @return {Boolean}
+ * @return {boolean}
  */
 export const isPrimaryClick = (event) =>
   !event.altKey &&
