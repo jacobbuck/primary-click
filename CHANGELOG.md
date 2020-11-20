@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Added source maps to build output.
+- Set `"sideEffects": false` in [package.json](./package.json).
+
+### Changed
+
+- Updated devDependencies.
+
 ## v1.4.0 - 2020-04-27
 
 ### Added
