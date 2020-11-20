@@ -12,6 +12,7 @@
     "coverage": "jest --coverage",
     "format": "prettier --write .",
     "prepare": "npm run build",
+    "preversion": "npm run test",
     "test": "jest"
   },
   "repository": {
