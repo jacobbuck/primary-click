@@ -1,74 +1,73 @@
 import { isPrimaryClick, onPrimaryClick } from '../';
 
 describe('isPrimaryClick', () => {
-  it('returns false when any modifier key is pressed', () => {
-    expect(isPrimaryClick({ altKey: true, button: 0 })).toBe(false);
-    expect(isPrimaryClick({ ctrlKey: true, button: 0 })).toBe(false);
-    expect(isPrimaryClick({ metaKey: true, button: 0 })).toBe(false);
-    expect(isPrimaryClick({ shiftKey: true, button: 0 })).toBe(false);
+  test.each(
+    ['alt', 'ctrl', 'meta', 'shift'],
+    'returns false when %s modifier key is pressed',
+    (mod) => {
+      expect(isPrimaryClick({ [`${mod}Key`]: true, button: 0 })).toBe(false);
+    }
+  );
+
+  test('returns true when event.button is 0 and event.buttons isn’t set', () => {
+    [null, undefined].forEach((buttons) => {
+      expect(isPrimaryClick({ button: 0, buttons })).toBe(true);
+    });
   });
 
-  it("returns true when button is 0 and buttons isn't set", () => {
-    expect(isPrimaryClick({ button: 0 })).toBe(true);
-    expect(isPrimaryClick({ button: 0, buttons: undefined })).toBe(true);
+  test('returns true when event.button is 0 and event.buttons is 0 or 1', () => {
+    [0, 1].forEach((buttons) => {
+      expect(isPrimaryClick({ button: 0, buttons })).toBe(true);
+    });
   });
 
-  it('returns true when button is 0 if buttons is set', () => {
-    expect(isPrimaryClick({ button: 0, buttons: 0 })).toBe(true);
-    expect(isPrimaryClick({ button: 0, buttons: 1 })).toBe(true);
+  test('returns false when event.button is not 0', () => {
+    [1, 3, -1, false, 'hello'].forEach((button) => {
+      expect(isPrimaryClick({ button })).toBe(false);
+    });
   });
 
-  it('returns false when button is not 0', () => {
-    expect(isPrimaryClick({ button: 1 })).toBe(false);
-    expect(isPrimaryClick({ button: 3 })).toBe(false);
-    expect(isPrimaryClick({ button: -1 })).toBe(false);
-    expect(isPrimaryClick({ button: false })).toBe(false);
-    expect(isPrimaryClick({ button: 'hello' })).toBe(false);
+  test('returns false when event.buttons is not 0 or 1', () => {
+    [2, 8, -1, false, 'hello'].forEach((buttons) => {
+      expect(isPrimaryClick({ button: 0, buttons })).toBe(false);
+    });
   });
 
-  it('returns false when buttons is not 0 or 1', () => {
-    expect(isPrimaryClick({ button: 0, buttons: 2 })).toBe(false);
-    expect(isPrimaryClick({ button: 0, buttons: 8 })).toBe(false);
-    expect(isPrimaryClick({ button: 0, buttons: -1 })).toBe(false);
-    expect(isPrimaryClick({ button: 0, buttons: false })).toBe(false);
-    expect(isPrimaryClick({ button: 0, buttons: 'hello' })).toBe(false);
-  });
-
-  it('uses which if button is not present', () => {
-    expect(isPrimaryClick({ which: 0 })).toBe(false);
+  test('uses event.which if event.button is not present', () => {
     expect(isPrimaryClick({ which: 1 })).toBe(true);
-    expect(isPrimaryClick({ which: 2 })).toBe(false);
-    expect(isPrimaryClick({ which: 3 })).toBe(false);
+    [0, 2, 3].forEach((which) => {
+      expect(isPrimaryClick({ which })).toBe(false);
+    });
   });
 });
 
 describe('onPrimaryClick', () => {
-  it('calls fn if isPrimaryClick returns true', () => {
+  test('calls fn if isPrimaryClick returns true', () => {
     const spy = jest.fn();
     onPrimaryClick(spy)({ button: 0 });
     expect(spy).toHaveBeenCalled();
   });
 
-  it("doesn't call fn if isPrimaryClick returns false", () => {
+  test('doesn’t call fn if isPrimaryClick returns false', () => {
     const spy = jest.fn();
     onPrimaryClick(spy)({ ctrlKey: true, button: 1 });
     expect(spy).not.toHaveBeenCalled();
   });
 
-  it('returns the value fn returns if called', () => {
-    const spy = jest.fn(() => 'hi');
+  test('returns the value fn returns if called', () => {
+    const spy = jest.fn().mockReturnValue('hi');
     expect(onPrimaryClick(spy)({ button: 0 })).toBe('hi');
   });
 
-  it("returns `undefined` if fn doesn't get called", () => {
-    const spy = jest.fn(() => 'hi');
+  test('returns undefined if fn doesn’t get called', () => {
+    const spy = jest.fn().mockReturnValue('hi');
     expect(onPrimaryClick(spy)({ ctrlKey: true, button: 1 })).toBeUndefined();
   });
 
-  it('passes down arguments to fn', () => {
+  test('passes down additional arguments to fn', () => {
     const spy = jest.fn();
-    const mockEvent = { button: 0 };
-    onPrimaryClick(spy)(mockEvent, 'goodbye', 420);
-    expect(spy).toHaveBeenCalledWith(mockEvent, 'goodbye', 420);
+    const event = { button: 0 };
+    onPrimaryClick(spy)(event, 'goodbye', 420);
+    expect(spy).toHaveBeenCalledWith(event, 'goodbye', 420);
   });
 });
