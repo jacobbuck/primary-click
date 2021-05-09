@@ -1,8 +1,7 @@
 import { isPrimaryClick, onPrimaryClick } from '../';
 
 describe('isPrimaryClick', () => {
-  test.each(
-    ['alt', 'ctrl', 'meta', 'shift'],
+  test.each(['alt', 'ctrl', 'meta', 'shift'])(
     'returns false when %s modifier key is pressed',
     (mod) => {
       expect(isPrimaryClick({ [`${mod}Key`]: true, button: 0 })).toBe(false);
